@@ -6,5 +6,5 @@ public interface EmployeeRepository {
 
 	int insertEmployee(Employee employee);
 
-	int chkEmailAlreadyExist(String email);
+	int chkEmailAlreadyExist(String email); 
 }

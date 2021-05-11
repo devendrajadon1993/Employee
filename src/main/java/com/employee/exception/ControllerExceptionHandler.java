@@ -18,7 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class); 
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ErrorMessage> resourceNotFoundException(ResourceNotFoundException ex) {

@@ -26,7 +26,7 @@ public class EmployeeController {
 		
 		LOGGER.debug("Adding a new employee entry with information: {}", emp);
 		employeeService.createEmployee(emp);
-		LOGGER.debug("Adding a new employee entry with information: {}", emp);
+		LOGGER.debug("Adding a new employee entry with information: {}", emp); 
 	}
 	
 }

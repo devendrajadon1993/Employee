@@ -11,16 +11,16 @@ import org.springframework.lang.NonNull;
 public class Employee {
 	
 	@NotNull(message = "First Name cannot be null")
-    @Size(min=1, max=15)
+    @Size(min=1, max=45)
 	private String firstName;
 	@NotNull(message = "Last Name cannot be null")
-    @Size(min=1, max=15)
+    @Size(min=1, max=45)
 	private String lastName;
 	@NonNull
 	@Email(message = "Email should be valid")
 	private String email;
 	@NotEmpty
-    @Size(min=10, max=12)
+    @Size(min=10, max=45)
 	private String phoneNo;
 	
 	public Employee(String firstName, String lastName, String email, String phoneNo) {
