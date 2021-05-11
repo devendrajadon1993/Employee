@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.employee.entity.Employee;
 import com.employee.exception.ResourceAlreadyExitsException;
+import com.employee.exception.ResourceNotFoundException;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.EmployeeService;
 import com.employee.utility.ErrorConstant;
@@ -23,6 +24,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new ResourceAlreadyExitsException(ErrorConstant.emailIdExists);
 		}
 		return employeeRepository.insertEmployee(employee);
+	}
+
+	@Override
+	public int deleteEmployeeById(int empId) {
+		
+		int empExist = employeeRepository.findEmployeeById(empId);
+		if(empExist==0) {
+			throw new ResourceNotFoundException(ErrorConstant.emailIdNotExists);
+		}
+		
+		return employeeRepository.deleteEmployeeById(empId);
 	}
 
 }

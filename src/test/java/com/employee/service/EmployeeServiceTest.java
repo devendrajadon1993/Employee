@@ -12,6 +12,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.employee.entity.Employee;
 import com.employee.exception.ResourceAlreadyExitsException;
+import com.employee.exception.ResourceNotFoundException;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.impl.EmployeeServiceImpl;
 
@@ -45,5 +46,22 @@ public class EmployeeServiceTest {
 		given(employeeRepository.chkEmailAlreadyExist(emp.getEmail())).willReturn(1);
 		employeeService.createEmployee(emp);
 		verify(employeeRepository, times(1)).insertEmployee(emp);
+	}
+	
+	@Test
+	public void Expect_Delete_Employee_By_Id_When_Deleteing_Employee() {
+		int employeeId =3;
+		given(employeeRepository.findEmployeeById(employeeId)).willReturn(1);
+		given(employeeRepository.deleteEmployeeById(employeeId)).willReturn(1);
+		employeeService.deleteEmployeeById(employeeId);
+		verify(employeeRepository, times(1)).deleteEmployeeById(employeeId);
+	}
+	
+	@Test(expected = ResourceNotFoundException.class)
+	public void Expect_Delete_Employee_By_Id_When_Employee_Not_Exit() {
+		int employeeId =3;
+		given(employeeRepository.findEmployeeById(employeeId)).willReturn(0);
+		employeeService.deleteEmployeeById(employeeId);
+		verify(employeeRepository, times(1)).deleteEmployeeById(employeeId);
 	}
 }
