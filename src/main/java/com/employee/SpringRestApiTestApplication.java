@@ -14,7 +14,6 @@ public class SpringRestApiTestApplication {
         SpringApplication.run(SpringRestApiTestApplication.class, args);
     }
     
-    
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);

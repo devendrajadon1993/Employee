@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(emailAlreadyExist>0) {
 			throw new ResourceAlreadyExitsException(ErrorConstant.emailIdExists);
 		}
-		return employeeRepository.insertEmployee(employee);
+		return employeeRepository.insertEmployee(employee); 
 	}
 
 	@Override

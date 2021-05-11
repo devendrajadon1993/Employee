@@ -37,6 +37,7 @@ public class EmployeeServiceTest {
 		given(employeeRepository.insertEmployee(emp)).willReturn(1);
 		employeeService.createEmployee(emp);
 		verify(employeeRepository, times(1)).insertEmployee(emp);
+		
 	}
 
 	@Test(expected = ResourceAlreadyExitsException.class)
@@ -45,7 +46,7 @@ public class EmployeeServiceTest {
 		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
 		given(employeeRepository.chkEmailAlreadyExist(emp.getEmail())).willReturn(1);
 		employeeService.createEmployee(emp);
-		verify(employeeRepository, times(1)).insertEmployee(emp);
+		verify(employeeRepository, times(1)).insertEmployee(emp); 
 	}
 	
 	@Test

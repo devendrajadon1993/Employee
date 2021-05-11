@@ -50,5 +50,4 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		return jdbcTemplate.update(sql, empId);
 	}
 	
-	
 }

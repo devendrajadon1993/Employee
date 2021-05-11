@@ -2,6 +2,7 @@ package com.employee.exception;
 
 public class FieldMessage {
 
+	
 	public String key;
     public String value;
     

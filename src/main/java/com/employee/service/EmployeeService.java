@@ -7,4 +7,5 @@ public interface EmployeeService {
 	int createEmployee(Employee employee);
 
 	int deleteEmployeeById(int empId);
+
 }

@@ -12,7 +12,6 @@ public class ErrorMessage {
 	private String timestamp;
 	List<FieldMessage> errors = new ArrayList<>();
 
-	
 	public ErrorMessage(int statusCode, List<FieldMessage> errors) {
 		super();
 		this.statusCode = statusCode;
