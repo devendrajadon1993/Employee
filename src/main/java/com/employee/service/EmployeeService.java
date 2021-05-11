@@ -4,5 +4,8 @@ import com.employee.entity.Employee;
 
 public interface EmployeeService {
 
-	int createEmployee(Employee employee); 
+	int createEmployee(Employee employee);
+
+	int deleteEmployeeById(int empId);
+
 }

@@ -33,11 +33,21 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public int chkEmailAlreadyExist(String email) {
 
 		String sql = "SELECT count(*) from employee where email= ?";
-		 return jdbcTemplate.queryForObject(
-				 	sql,
-	                new Object[]{email},
-	                Integer.class
-	        );
+		return jdbcTemplate.queryForObject(sql, new Object[] { email }, Integer.class);
+	}
+
+
+	@Override
+	public int findEmployeeById(int empId) {
+		String sql = "SELECT count(*) from employee where id= ?";
+		return jdbcTemplate.queryForObject(sql, new Object[] { empId }, Integer.class);
+	}
+
+
+	@Override
+	public int deleteEmployeeById(int empId) {
+		String sql = "delete from employee where id= ?";
+		return jdbcTemplate.update(sql, empId);
 	}
 	
 }
