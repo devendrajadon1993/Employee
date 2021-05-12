@@ -1,5 +1,7 @@
 package com.employee.service.impl;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 	model.setTotalRecords(employeeRepository.getTotalEmployeeCounts(searchTerm));
 	 	model.setData(employeeRepository.getEmployeeList(searchTerm,pageNo, pageSize));
 	 	return model;
+	}
+
+	@Override
+	public int updateEmployeeById(int empId, @Valid Employee emp) {
+		
+		int empExist = employeeRepository.findEmployeeById(empId);
+		if(empExist==0) {
+			throw new ResourceNotFoundException(ErrorConstant.emailIdNotExists);
+		}
+		
+		return employeeRepository.updateEmployeeById(empId,emp);
+		
 	}
 
 }
