@@ -2,6 +2,8 @@ package com.employee.repository;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -66,6 +68,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public List<ViewEmployee> getEmployeeList(String searchTerm, int pageNo, int pageSize) {
 		String sql = "select id as empId,first_name,last_name,email,phone as phoneNumber from employee where first_name like ? order by first_name limit "+pageSize+" offset "+pageNo*pageSize+"";
 		return jdbcTemplate.query(sql,new Object[]{"%" + searchTerm + "%" }, new BeanPropertyRowMapper<ViewEmployee>(ViewEmployee.class));
+	}
+
+
+	@Override
+	public int updateEmployeeById(int empId, @Valid Employee emp) {
+		
+		String sql ="update employee set first_name =? , last_name=? ,phone=? where id=?";
+		return jdbcTemplate.update(sql, new Object[] {emp.getFirstName(),emp.getLastName(),emp.getPhoneNo(),empId});
 	}
 	
 }

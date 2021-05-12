@@ -65,4 +65,23 @@ public class EmployeeServiceTest {
 		employeeService.deleteEmployeeById(employeeId);
 		verify(employeeRepository, times(1)).deleteEmployeeById(employeeId);
 	}
+	
+	@Test(expected = ResourceNotFoundException.class)
+	public void Expect_Update_Employee_By_Id_When_Employee_Not_Exit() {
+		int employeeId =3;
+		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+		given(employeeRepository.findEmployeeById(employeeId)).willReturn(0);
+		employeeService.updateEmployeeById(employeeId,emp);
+		verify(employeeRepository, times(1)).updateEmployeeById(employeeId,emp);
+	}
+	
+	@Test
+	public void Expect_Update_Employee_By_Id_When_Employee_Exit() {
+		int employeeId =3;
+		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+		given(employeeRepository.findEmployeeById(employeeId)).willReturn(1);
+		employeeService.updateEmployeeById(employeeId,emp);
+		verify(employeeRepository, times(1)).updateEmployeeById(employeeId,emp);
+	}
+	
 }
