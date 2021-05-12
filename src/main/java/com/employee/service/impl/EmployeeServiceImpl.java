@@ -9,6 +9,8 @@ import com.employee.exception.ResourceNotFoundException;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.EmployeeService;
 import com.employee.utility.ErrorConstant;
+import com.employee.view.model.ListModal;
+import com.employee.view.model.ViewEmployee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -35,6 +37,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 		return employeeRepository.deleteEmployeeById(empId);
+	}
+
+	@Override
+	public ListModal<ViewEmployee> getEmployeeList(String searchTerm, int pageNo, int pageSize) {
+		 
+		ListModal<ViewEmployee> model = new ListModal<ViewEmployee>();
+		model.setPageNo(pageNo);
+		model.setPageSize(pageSize);
+	 	model.setTotalRecords(employeeRepository.getTotalEmployeeCounts(searchTerm));
+	 	model.setData(employeeRepository.getEmployeeList(searchTerm,pageNo, pageSize));
+	 	return model;
 	}
 
 }
