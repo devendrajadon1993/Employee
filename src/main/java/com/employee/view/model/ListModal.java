@@ -9,7 +9,7 @@ public class ListModal<T> {
 	private int pageSize;
 	private Long totalRecords;
 	private List<T> data = new ArrayList<>();
-	
+
 	public int getPageNo() {
 		return pageNo;
 	}
@@ -44,10 +44,8 @@ public class ListModal<T> {
 
 	@Override
 	public String toString() {
-		return "ListModal [pageNo=" + pageNo + ", pageSize=" + pageSize + ", totalRecords=" + totalRecords
-				+ ", data=" + data + "]";
+		return "ListModal [pageNo=" + pageNo + ", pageSize=" + pageSize + ", totalRecords=" + totalRecords + ", data="
+				+ data + "]";
 	}
 
-	
-	
 }
