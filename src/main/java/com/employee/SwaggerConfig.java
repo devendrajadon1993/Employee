@@ -18,12 +18,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	
 	@Bean
 	public Docket postsApi() {
-		return new Docket(DocumentationType.SWAGGER_2).host("localhost:8080/").groupName("public-api").useDefaultResponseMessages(false)
-				.apiInfo(apiInfo()).select().
-				paths(postPaths()) .build();
+		return new Docket(DocumentationType.SWAGGER_2).host("localhost:8080/").groupName("public-api")
+				.useDefaultResponseMessages(false).apiInfo(apiInfo()).select().paths(postPaths()).build();
 	}
 
 	private Predicate<String> postPaths() {
@@ -33,9 +31,8 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("INNOVEO ISCO Portal APIs")
 				.description("The document lists Sample REST APIs . ")
-				.termsOfServiceUrl("[ Base URL: localhost:8080/{api-version} ]")
-				.contact("").license("")
-				.licenseUrl("").version("1.0").build();
+				.termsOfServiceUrl("[ Base URL: localhost:8080/{api-version} ]").contact("").license("").licenseUrl("")
+				.version("1.0").build();
 	}
 
 }

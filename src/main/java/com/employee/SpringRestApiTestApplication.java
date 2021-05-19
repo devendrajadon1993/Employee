@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @SpringBootApplication
 public class SpringRestApiTestApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringRestApiTestApplication.class, args);
-    }
-    
-    @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringRestApiTestApplication.class, args);
+	}
+
+	@Bean
+	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+		return new JdbcTemplate(dataSource);
+	}
 }

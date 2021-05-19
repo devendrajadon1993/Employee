@@ -20,68 +20,68 @@ public class EmployeeServiceTest {
 
 	@Mock
 	EmployeeRepository employeeRepository;
-	
+
 	@InjectMocks
 	EmployeeServiceImpl employeeService;
-	
+
 	@Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
 
 	}
-	
+
 	@Test
-	public void Expect_Created_Employee_When_Creating_New_Employee() {
-		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+	public void add_NewEmployeeEntry_ShouldSaveEmployeeEntry() {
+		Employee emp = new Employee("Dev", "Jadon", "Jadon@gmail.com", "8854963371");
 		given(employeeRepository.chkEmailAlreadyExist(emp.getEmail())).willReturn(0);
 		given(employeeRepository.insertEmployee(emp)).willReturn(1);
 		employeeService.createEmployee(emp);
 		verify(employeeRepository, times(1)).insertEmployee(emp);
-		
+
 	}
 
 	@Test(expected = ResourceAlreadyExitsException.class)
-	public void Expect_Created_Employee_When_Email_Already_Exits_New_Employee() {
-		
-		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+	public void add_NewEmployeeEntry_EmployeeEntryAlready_Exists_ShouldThrowException() {
+
+		Employee emp = new Employee("Dev", "Jadon", "Jadon@gmail.com", "8854963371");
 		given(employeeRepository.chkEmailAlreadyExist(emp.getEmail())).willReturn(1);
 		employeeService.createEmployee(emp);
-		verify(employeeRepository, times(1)).insertEmployee(emp); 
+		verify(employeeRepository, times(1)).insertEmployee(emp);
 	}
-	
+
 	@Test
-	public void Expect_Delete_Employee_By_Id_When_Deleteing_Employee() {
-		int employeeId =3;
+	public void deleteById_EmployeeEntryFound_ShouldDeleteEmployeeEntryAndReturnIt() {
+		int employeeId = 3;
 		given(employeeRepository.findEmployeeById(employeeId)).willReturn(1);
 		given(employeeRepository.deleteEmployeeById(employeeId)).willReturn(1);
 		employeeService.deleteEmployeeById(employeeId);
 		verify(employeeRepository, times(1)).deleteEmployeeById(employeeId);
 	}
-	
+
 	@Test(expected = ResourceNotFoundException.class)
-	public void Expect_Delete_Employee_By_Id_When_Employee_Not_Exit() {
-		int employeeId =3;
+	public void deleteById_EmployeeEntryNotFound_ShouldThrowException() {
+		int employeeId = 3;
 		given(employeeRepository.findEmployeeById(employeeId)).willReturn(0);
 		employeeService.deleteEmployeeById(employeeId);
 		verify(employeeRepository, times(1)).deleteEmployeeById(employeeId);
 	}
-	
+
 	@Test(expected = ResourceNotFoundException.class)
-	public void Expect_Update_Employee_By_Id_When_Employee_Not_Exit() {
-		int employeeId =3;
-		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+	public void update_EmployeeEntryFound_ShouldUpdateEmployeeEntry() {
+		int employeeId = 3;
+		Employee emp = new Employee("Dev", "Jadon", "Jadon@gmail.com", "8854963371");
 		given(employeeRepository.findEmployeeById(employeeId)).willReturn(0);
-		employeeService.updateEmployeeById(employeeId,emp);
-		verify(employeeRepository, times(1)).updateEmployeeById(employeeId,emp);
+		employeeService.updateEmployeeById(employeeId, emp);
+		verify(employeeRepository, times(1)).updateEmployeeById(employeeId, emp);
 	}
-	
+
 	@Test
-	public void Expect_Update_Employee_By_Id_When_Employee_Exit() {
-		int employeeId =3;
-		Employee emp = new Employee("DEv", "Jadon", "Jadon@gmail.com", "8854963371");
+	public void update_EmployeeEntryNotFound_ShouldThrowException() {
+		int employeeId = 3;
+		Employee emp = new Employee("Dev", "Jadon", "Jadon@gmail.com", "8854963371");
 		given(employeeRepository.findEmployeeById(employeeId)).willReturn(1);
-		employeeService.updateEmployeeById(employeeId,emp);
-		verify(employeeRepository, times(1)).updateEmployeeById(employeeId,emp);
+		employeeService.updateEmployeeById(employeeId, emp);
+		verify(employeeRepository, times(1)).updateEmployeeById(employeeId, emp);
 	}
-	
+
 }
